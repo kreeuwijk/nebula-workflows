@@ -1,0 +1,21 @@
+version: v1
+description: This workflow provisions a new GKE cluster and deploys a demo app in it
+steps:
+  - name: k8s-provisioner
+    image: projectnebula/k8s-provisioner:latest
+    spec:
+      provider: gcp
+      project: kevins-project-214613
+      clusterName: kevins-cluster
+      credentials:
+        gcpServiceAccountFile: 
+          $type: Secret
+          name: gcp-credentials
+      stateStoreName: kevins-bucket
+      masterCount: 1
+      nodeCount: 2
+      zones:
+        - europe-west3-a
+        - europe-west3-b
+        - europe-west3-c
+      region: europe-west3
