@@ -18,6 +18,4 @@ steps:
       nodeCount: 2
       zones:
         - europe-west3-a
-        - europe-west3-b
-        - europe-west3-c
       region: europe-west3
