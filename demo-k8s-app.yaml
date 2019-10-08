@@ -13,7 +13,7 @@ steps:
         gcpServiceAccountFile: 
           $type: Secret
           name: gcp-credentials
-      stateStoreName: kevins-bucket
+      stateStoreName: puppet-kevins-bucket
       masterCount: 1
       nodeCount: 2
       zones:
