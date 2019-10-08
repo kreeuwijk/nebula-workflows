@@ -5,7 +5,7 @@ steps:
     image: projectnebula/k8s-provisioner:latest
     spec:
       provider: gcp
-      clusterName: kevins-cluster
+      clusterName: kevins-cluster.k8s.local
       project:
         $type: Secret
         name: gcp-project
