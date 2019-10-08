@@ -1,21 +1,22 @@
 version: v1
 description: This workflow provisions a new GKE cluster and deploys a demo app in it
 steps:
-  - name: k8s-provisioner
-    image: projectnebula/k8s-provisioner:latest
-    spec:
-      provider: gcp
-      clusterName: kevins-cluster.k8s.local
-      project:
+- name: terraform-provision-gke
+  image: projectnebula/terraform:latest
+  spec:
+    vars:
+      gcp_region: europe-west3
+      gcp_location: europe-west3-a
+      gcp_project:
         $type: Secret
         name: gcp-project
-      credentials:
-        gcpServiceAccountFile: 
-          $type: Secret
-          name: gcp-credentials
-      stateStoreName: puppet-kevins-bucket
-      masterCount: 1
-      nodeCount: 2
-      zones:
-        - europe-west3-a
-      region: europe-west3
+    directory: terraform/gke/
+    credentials:
+      credentials.json:
+        $type: Secret
+        name: gcp-credentials
+    git:
+      name: nebula-workflows
+      repository: https://github.com/kreeuwijk/nebula-workflows.git
+      ssh_key: ''
+      known_hosts: ''
