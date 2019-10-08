@@ -5,8 +5,10 @@ steps:
     image: projectnebula/k8s-provisioner:latest
     spec:
       provider: gcp
-      project: kevins-project-214613
       clusterName: kevins-cluster
+      project:
+        $type: Secret
+        name: gcp-project
       credentials:
         gcpServiceAccountFile: 
           $type: Secret
