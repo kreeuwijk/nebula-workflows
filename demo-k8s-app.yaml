@@ -48,3 +48,30 @@ steps:
       known_hosts: ''
   dependsOn:
     - terraform-provision-gke
+- name: kubectl-deploy-app-frontend
+  image: projectnebula/kubectl:latest
+  spec:
+    command: apply
+    file: kubectl/gke/deploy-myapp-frontend.yaml
+    namespace: default
+    cluster:
+      name: kevins-cluster
+      url:
+        $type: Output
+        name: k8s_endpoint
+        taskName: terraform-provision-gke
+      cadata:
+        $type: Output
+        name: k8s_master_auth_cluster_ca_certificate
+        taskName: terraform-provision-gke
+      token:
+        $type: Output
+        name: k8s_master_access_token
+        taskName: terraform-provision-gke
+    git: 
+      name: nebula-workflows
+      repository: https://github.com/kreeuwijk/nebula-workflows.git
+      ssh_key: ''
+      known_hosts: ''
+  dependsOn:
+    - kubectl-deploy-app-backend

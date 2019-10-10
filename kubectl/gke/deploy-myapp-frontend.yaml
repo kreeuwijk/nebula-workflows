@@ -1,23 +1,23 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: myapp-db-svc
+  name: myapp-frontend-svc
   namespace: default
   labels:
     run: nebula
 spec:
   ports:
-    - port: 3306
-      targetPort: 3306
+    - port: 80
+      targetPort: 80
       protocol: TCP
-  type: NodePort
+  type: LoadBalancer
   selector:
-    deployment: myapp-db
+  deployment: myapp-frontend
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: myapp-db
+  name: myapp-frontend
   namespace: default
 spec:
   replicas: 1
@@ -28,18 +28,18 @@ spec:
     spec:
       containers:
       - env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: 'AdminP@ssw0rd'
         - name: MYSQL_DATABASE
           value: myapp-db
         - name: MYSQL_USER
           value: db_user
         - name: MYSQL_PASSWORD
           value: db_pass
-        image: puppetseteam/pfc-myapp-db:461721
-        name: myapp-db
+        - name: MYSQL_SVC
+          value: myapp-db-svc
+        image: puppetseteam/pfc-myapp:473023
+        name: myapp-frontend
         ports:
-        - containerPort: 3306
-          hostPort: 3306
-          name: mysql
+        - containerPort: 80
+          hostPort: 80
+          name: http
           protocol: TCP
