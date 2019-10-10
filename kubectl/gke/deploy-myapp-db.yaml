@@ -3,16 +3,23 @@ kind: Deployment
 metadata:
   name: myapp-db
   namespace: default
+  labels:
+    run: nebula
 spec:
   replicas: 1
   minReadySeconds: 0
   revisionHistoryLimit: 1
+  selector:
+    run: nebula
   strategy:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
     type: RollingUpdate
   template:
+    metadata:
+      labels:
+        run: nebula
     spec:
       containers:
       - env:
