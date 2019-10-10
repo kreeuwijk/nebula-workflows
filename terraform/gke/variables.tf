@@ -30,7 +30,7 @@ variable "master_username" {
 
 variable "master_password" {
   description = "Password for accessing the Kubernetes master endpoint"
-  default = "puppetlabs"
+  default = "puppetlabskubernetes"
 }
 
 variable "node_machine_type" {
