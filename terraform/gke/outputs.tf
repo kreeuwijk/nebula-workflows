@@ -1,5 +1,5 @@
 output "k8s_endpoint" {
-  value = "${google_container_cluster.demo.endpoint}"
+  value = "https://${google_container_cluster.demo.endpoint}"
 }
 
 output "k8s_master_version" {
