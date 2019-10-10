@@ -1,21 +1,26 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: myapp-db-svc
+  namespace: default
+  labels:
+    run: nebula
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+  type: NodePort
+  selector:
+    deployment: myapp-db
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: myapp-db
   namespace: default
-  labels:
-    run: nebula
 spec:
   replicas: 1
-  minReadySeconds: 0
-  revisionHistoryLimit: 1
-  selector:
-    run: nebula
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
   template:
     metadata:
       labels:
