@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: myapp-db
+  namespace: default
+spec:
+  replicas: 1
+  minReadySeconds: 0
+  revisionHistoryLimit: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: 'AdminP@ssw0rd'
+        - name: MYSQL_DATABASE
+          value: 'mysqb_db'
+        - name: MYSQL_USER
+          value: 'db_user'
+        - name: MYSQL_PASSWORD
+          value: 'db_pass'
+        image: puppetseteam/pfc-myapp-db:461721
+        name: myapp-db
+        ports:
+        - containerPort: 3306
+          hostPort: 3306
+          name: mysql
+          protocol: TCP
