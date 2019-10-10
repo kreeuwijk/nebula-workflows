@@ -11,6 +11,7 @@ steps:
         $type: Secret
         name: gcp-project
     directory: terraform/gke/
+    workspace: nebula
     credentials:
       credentials.json:
         $type: Secret
