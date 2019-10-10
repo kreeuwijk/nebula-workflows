@@ -12,7 +12,7 @@ spec:
       protocol: TCP
   type: LoadBalancer
   selector:
-  deployment: myapp-frontend
+    deployment: myapp-frontend
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
