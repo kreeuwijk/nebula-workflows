@@ -4,7 +4,7 @@ metadata:
   name: myapp-frontend-svc
   namespace: default
   labels:
-    run: nebula
+    app: myapp-frontend
 spec:
   ports:
     - port: 80
@@ -12,7 +12,7 @@ spec:
       protocol: TCP
   type: LoadBalancer
   selector:
-    deployment: myapp-frontend
+    app: myapp-frontend
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       labels:
-        run: nebula
+        app: myapp-frontend
     spec:
       containers:
       - env:

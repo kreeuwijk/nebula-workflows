@@ -4,14 +4,14 @@ metadata:
   name: myapp-db-svc
   namespace: default
   labels:
-    run: nebula
+    app: myapp-db
 spec:
   ports:
     - port: 3306
       targetPort: 3306
       protocol: TCP
   selector:
-    deployment: myapp-db
+    app: myapp-db
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -23,7 +23,7 @@ spec:
   template:
     metadata:
       labels:
-        run: nebula
+        app: myapp-db
     spec:
       containers:
       - env:
