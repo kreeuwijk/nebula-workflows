@@ -12,16 +12,20 @@ output "k8s_instance_group_urls" {
 
 output "k8s_master_auth_client_certificate" {
   value = "${google_container_cluster.demo.master_auth.0.client_certificate}"
+  sensitive = true
 }
 
 output "k8s_master_auth_client_key" {
   value = "${google_container_cluster.demo.master_auth.0.client_key}"
+  sensitive = true
 }
 
 output "k8s_master_access_token" {
   value = "${data.google_client_config.current.access_token}"
+  sensitive = true
 }
 
 output "k8s_master_auth_cluster_ca_certificate" {
   value = "${google_container_cluster.demo.master_auth.0.cluster_ca_certificate}"
+  sensitive = true
 }
