@@ -10,7 +10,6 @@ spec:
     - port: 3306
       targetPort: 3306
       protocol: TCP
-  type: NodePort
   selector:
     deployment: myapp-db
 ---
@@ -40,6 +39,5 @@ spec:
         name: myapp-db
         ports:
         - containerPort: 3306
-          hostPort: 3306
           name: mysql
           protocol: TCP

@@ -40,6 +40,5 @@ spec:
         name: myapp-frontend
         ports:
         - containerPort: 80
-          hostPort: 80
           name: http
           protocol: TCP
