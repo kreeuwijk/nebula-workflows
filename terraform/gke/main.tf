@@ -13,6 +13,8 @@ provider "google" {
   region      = "${local.workspace["gcp_region"]}"
 }
 
+data "google_client_config" "current" {}
+
 resource "google_container_cluster" "demo" {
   name               = "kevins-cluster"
   description        = "Demo K8S cluster"

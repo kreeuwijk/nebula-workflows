@@ -18,6 +18,10 @@ output "k8s_master_auth_client_key" {
   value = "${google_container_cluster.demo.master_auth.0.client_key}"
 }
 
+output "k8s_master_access_token" {
+  value = "${data.google_client_config.current.access_token}"
+}
+
 output "k8s_master_auth_cluster_ca_certificate" {
   value = "${google_container_cluster.demo.master_auth.0.cluster_ca_certificate}"
 }

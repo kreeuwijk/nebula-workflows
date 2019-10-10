@@ -39,7 +39,7 @@ steps:
         taskName: terraform-provision-gke
       token:
         $type: Output
-        name: k8s_master_auth_client_key
+        name: k8s_master_access_token
         taskName: terraform-provision-gke
     git: 
       name: nebula-workflows
