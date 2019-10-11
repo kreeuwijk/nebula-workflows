@@ -14,7 +14,7 @@ provider "google" {
 }
 
 provider "kubernetes" {
-  host = "https://${var.k8s_endpoint}"
+  host = "${var.k8s_endpoint}"
   username = "${var.master_username}"
   password = "${var.master_password}"
 }

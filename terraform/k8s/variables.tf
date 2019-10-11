@@ -4,9 +4,10 @@ locals {
     file = "workspace.${terraform.workspace}.tfvars.json"
 
     defaults = {
-	gcp_region = ""
-	gcp_location = ""
-	gcp_project = ""
+      gcp_region = ""
+      gcp_location = ""
+      gcp_project = ""
+      k8s_endpoint = ""
     }
   }
 
@@ -16,11 +17,6 @@ locals {
 variable "google-credentials" {
   description = "The Google credentials data to use for authentication"
   default     = ""
-}
-
-variable "k8s_endpoint" {
-  description = "Kubernetes master endpoint"
-  default = ""
 }
 
 variable "master_username" {
