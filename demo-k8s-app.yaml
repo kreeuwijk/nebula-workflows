@@ -75,3 +75,14 @@ steps:
       known_hosts: ''
   dependsOn:
     - kubectl-deploy-app-backend
+- name: slack-notification
+  image: projectnebula/slack-notification:latest
+  spec:
+    apitoken:
+      $type: Secret
+      name: slack-token
+    channel: "#nebula-workflows"
+    message:
+      $type: Output
+      name: slack-notification
+      taskName: terraform-provision-gke
