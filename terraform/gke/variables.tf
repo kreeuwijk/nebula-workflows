@@ -4,9 +4,9 @@ locals {
     file = "workspace.${terraform.workspace}.tfvars.json"
 
     defaults = {
-	gcp_region = ""
-	gcp_location = ""
-	gcp_project = ""
+      gcp_region = ""
+      gcp_location = ""
+      gcp_project = ""
     }
   }
 
