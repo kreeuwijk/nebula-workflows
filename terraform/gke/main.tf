@@ -41,3 +41,30 @@ resource "google_container_cluster" "demo" {
     ]
   }
 }
+
+provider "kubernetes" {
+  host = "https://${google_container_cluster.demo.endpoint}"
+  username = "${var.master_username}"
+  password = "${var.master_password}"
+}
+
+resource "kubernetes_service" "myapp-frontend-svc" {
+  metadata {
+    name = "myapp-frontend-svc"
+    namespace = "default"
+    labels = {
+      app = "myapp-frontend"
+    }
+  }
+  spec {
+    selector = {
+      app = "myapp-frontend"
+    }
+    port {
+      port        = 80
+      target_port = 80
+      protocol    = "TCP"
+    }
+    type = "LoadBalancer"
+  }
+}

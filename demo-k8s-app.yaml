@@ -75,29 +75,3 @@ steps:
       known_hosts: ''
   dependsOn:
     - kubectl-deploy-app-backend
-- name: terraform-gke-k8s-lb
-  image: projectnebula/terraform:latest
-  spec:
-    vars:
-      gcp_region: europe-west3
-      gcp_location: europe-west3-a
-      gcp_project:
-        $type: Secret
-        name: gcp-project
-      k8s_endpoint:
-        $type: Output
-        name: k8s_endpoint
-        taskName: terraform-provision-gke
-    directory: terraform/k8s/
-    workspace: nebula
-    credentials:
-      credentials.json:
-        $type: Secret
-        name: gcp-credentials
-    git:
-      name: nebula-workflows
-      repository: https://github.com/kreeuwijk/nebula-workflows.git
-      ssh_key: ''
-      known_hosts: ''
-  dependsOn:
-    - kubectl-deploy-app-frontend
