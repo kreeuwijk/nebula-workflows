@@ -7,6 +7,12 @@ terraform {
   }
 }
 
+provider "google" {
+  credentials = "${var.google-credentials}"
+  project     = "${local.workspace["gcp_project"]}"
+  region      = "${local.workspace["gcp_region"]}"
+}
+
 provider "kubernetes" {
   host = "https://${var.k8s_endpoint}"
   username = "${var.master_username}"
