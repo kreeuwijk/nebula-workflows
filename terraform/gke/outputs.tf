@@ -31,5 +31,5 @@ output "k8s_master_auth_cluster_ca_certificate" {
 }
 
 output "slack-notification" {
-  value = "Your App is deployed! Access it at http://${kubernetes_service.myapp-frontend-svc.load_balancer_ingress.0.ip}"
+  value = "'Your App is deployed! Access it at http://${kubernetes_service.myapp-frontend-svc.load_balancer_ingress.0.ip}'"
 }
