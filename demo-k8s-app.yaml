@@ -86,3 +86,5 @@ steps:
       $type: Output
       name: slack-notification
       taskName: terraform-provision-gke
+  dependsOn:
+    - kubectl-deploy-app-frontend
