@@ -20,7 +20,7 @@ spec:
           value: db_pass
         - name: MYSQL_SVC
           value: myapp-db-svc
-        image: puppetseteam/pfc-myapp:483040
+        image: puppetseteam/pfc-myapp:483049
         name: myapp-frontend
         ports:
         - containerPort: 80
