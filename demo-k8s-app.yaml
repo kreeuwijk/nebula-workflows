@@ -74,7 +74,7 @@ steps:
       ssh_key: ''
       known_hosts: ''
   dependsOn:
-    - terraform-provision-gke
+    - kubectl-deploy-app-backend
 - name: slack-notification
   image: projectnebula/slack-notification:latest
   spec:
@@ -87,5 +87,4 @@ steps:
       name: slack-notification
       taskName: terraform-provision-gke
   dependsOn:
-    - kubectl-deploy-app-backend
     - kubectl-deploy-app-frontend
